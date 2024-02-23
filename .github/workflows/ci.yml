@@ -11,8 +11,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: self-hosted
-    labels: Linux
+    runs-on: self-hosted[Linux]
     
     steps:
       - name: Checkout repository
