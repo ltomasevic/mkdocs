@@ -12,7 +12,8 @@ permissions:
 jobs:
   deploy:
     runs-on: self-hosted
-
+    labels: Linux
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
