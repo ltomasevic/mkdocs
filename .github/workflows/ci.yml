@@ -42,7 +42,7 @@ jobs:
           pip install mkdocs-material pillow cairosvg
 
       - name: Navigate to repository directory
-        run: cd ${{ github.workspace }}
+        run: echo "Working directory is already set to ${{ github.workspace }}"
 
       - name: Configure Git for deployment
         run: |
