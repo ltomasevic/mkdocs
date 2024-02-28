@@ -41,19 +41,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs-material pillow cairosvg
 
-      - name: Check if directory is a Git repository
-        run: |
-          if [ -d .git ]; then
-            echo "Directory is a Git repository"
-          else
-            echo "Directory is NOT a Git repository"
-            rm -rf *  # Remove existing content
-            git clone https://github.com/ltomasevic/mkdocs.git .
-          fi
-
-      - name: Configure Git for deployment
-        run: |
-          git config --global --add safe.directory /__w/mkdocs/mkdocs
-
       - name: Build and deploy documentation
         run: mkdocs gh-deploy --force
