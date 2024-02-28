@@ -41,6 +41,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs-material pillow cairosvg
 
+      - name: Navigate to repository directory
+        run: cd ${{ github.workspace }}
+
       - name: Configure Git for deployment
         run: |
           git config --global --add safe.directory /__w/mkdocs/mkdocs
