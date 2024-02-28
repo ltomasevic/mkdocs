@@ -12,22 +12,33 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container:
-      image: python:3.9
-      env:
-        PYTHON_VERSION: 3.9
-      ports:
-        - 8080:80
-      volumes:
-        - my_docker_volume:/volume_mount
-      options: --cpus 1
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install MkDocs and dependencies
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - name: Install Git
+        run: sudo apt-get install git -y
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+
+      - name: Install Python dependencies
         run: |
-          pip install mkdocs-material pillow
+          python -m pip install --upgrade pip
+          pip install mkdocs-material pillow cairosvg
+
+      - name: Configure Git for deployment
+        run: |
+          git config --global --add safe.directory /__w/mkdocs/mkdocs
 
       - name: Build and deploy documentation
         run: mkdocs gh-deploy --force
