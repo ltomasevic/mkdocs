@@ -40,6 +40,19 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install mkdocs-material pillow cairosvg
+      - name: Navigate to repository directory
+        run: echo "Working directory is already set to ${{ github.workspace }}"
 
+      - name: Check if directory is a Git repository
+        run: |
+          if [ -d .git ]; then
+            echo "Directory is a Git repository"
+          else
+            echo "Directory is NOT a Git repository"
+            git clone https://github.com/ltomasevic/mkdocs.git .
+          fi
+      - name: Configure Git for deployment
+        run: |
+          git config --global --add safe.directory /__w/mkdocs/mkdocs
       - name: Build and deploy documentation
         run: mkdocs gh-deploy --force
