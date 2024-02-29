@@ -49,10 +49,7 @@ jobs:
             echo "Directory is a Git repository"
           else
             echo "Directory is NOT a Git repository"
-            git init  
-            git remote add origin https://github.com/ltomasevic/mkdocs.git
-            git fetch
-            git checkout main
+            git clone https://github.com/ltomasevic/mkdocs.git .
           fi
       - name: Configure Git for deployment
         run: |
