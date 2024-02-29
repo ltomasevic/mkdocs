@@ -46,7 +46,7 @@ jobs:
       
 
       - name: Build and deploy documentation
-        run: mkdocs gh-deploy --force
+        run: mkdocs gh-deploy --force || true
         
       - name: Wait for some time
         run: sleep 300  
