@@ -43,6 +43,8 @@ jobs:
       - name: Navigate to repository directory
         run: echo "Working directory is already set to ${{ github.workspace }}"
 
-      
+      - name: Wait for some time
+        run: sleep 300  
+
       - name: Build and deploy documentation
         run: mkdocs gh-deploy --force
