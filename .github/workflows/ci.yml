@@ -44,7 +44,7 @@ jobs:
       - name: Install pip and mkdocs
         run: |
           apt-get install -y python3-pip
-          pip install -y mkdocs
+          pip install mkdocs
 
       - name: Create git repo
         run: |
